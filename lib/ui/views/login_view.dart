@@ -10,10 +10,9 @@ import '../buttons/custom_outlined_button.dart';
 import '../buttons/link_text copy.dart';
 import '../inputs/custom_inputs.dart';
 
-
-
-
 class LoginView extends StatelessWidget {
+  const LoginView({Key? key}) : super(key: key);
+
   
   @override
   Widget build(BuildContext context) {
@@ -41,6 +40,7 @@ class LoginView extends StatelessWidget {
                   
                   // Email
                   TextFormField(
+                    onFieldSubmitted: ( _ ) => onFormSubmit( loginFormProvider, authProvider ),
                     validator: ( value ) {
                       if( !EmailValidator.validate(value ?? '') ) return 'Email no válido';
 
@@ -59,6 +59,7 @@ class LoginView extends StatelessWidget {
 
                   // Password
                   TextFormField(
+                    onFieldSubmitted: ( _ ) => onFormSubmit( loginFormProvider, authProvider ),
                     onChanged: ( value ) => loginFormProvider.password = value,
                     validator: ( value ) {
                       if ( value == null || value.isEmpty ) return 'Ingrese su contraseña';
@@ -77,12 +78,7 @@ class LoginView extends StatelessWidget {
                   
                   const SizedBox( height: 20 ),
                   CustomOutlinedButton(
-                    onPressed: () {
-                      final isValid = loginFormProvider.validateForm();
-                      if ( isValid ) {
-                        authProvider.login(loginFormProvider.email, loginFormProvider.password);
-                      }
-                    }, 
+                    onPressed: () => onFormSubmit( loginFormProvider, authProvider ), 
                     text: 'Ingresar',
                   ),
 
@@ -103,6 +99,13 @@ class LoginView extends StatelessWidget {
       );
       })
     );
+  }
+
+  void onFormSubmit(LoginFormProvider loginFormProvider, AuthProvider authProvider ) {
+    final isValid = loginFormProvider.validateForm();
+    if ( isValid ) {
+      authProvider.login(loginFormProvider.email, loginFormProvider.password);
+    }
   }
 
 }
