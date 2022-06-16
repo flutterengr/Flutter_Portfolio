@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:admin_dashboard/services/navigation_service.dart';
 
-import 'package:admin_dashboard/models/usuario.dart';
+import '../models/http/usuario.dart';
+import '../services/navigation_service.dart';
 
 class UsersDataSource extends DataTableSource {
 
@@ -16,13 +16,13 @@ class UsersDataSource extends DataTableSource {
     
     final Usuario user = users[index];
 
-    final image = Image( image: AssetImage('no-image.jpg'), width: 35, height: 35 );
+    const image = Image( image: AssetImage('no-image.jpg'), width: 35, height: 35 );
 
 
     return DataRow.byIndex(
       index: index,
       cells: [
-        DataCell( 
+        const DataCell( 
           ClipOval( child: image )
         ),
         DataCell( Text( user.nombre ) ),
@@ -30,7 +30,7 @@ class UsersDataSource extends DataTableSource {
         DataCell( Text( user.uid ) ),
         DataCell(
           IconButton(
-            icon: Icon( Icons.edit_outlined ), 
+            icon: const Icon( Icons.edit_outlined ), 
             onPressed: () {
               NavigationService.replaceTo('/dashboard/users/${ user.uid }');
             }

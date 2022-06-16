@@ -1,11 +1,14 @@
-import 'package:admin_dashboard/api/CafeApi.dart';
-import 'package:admin_dashboard/models/usuario.dart';
+// ignore_for_file: unnecessary_this, avoid_print
+
 import 'package:flutter/material.dart';
+
+import '../api/CafeApi.dart';
+import '../models/http/usuario.dart';
 
 class UserFormProvider extends ChangeNotifier {
 
   Usuario? user;
-  GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   // void updateListener() {
   //   notifyListeners();
@@ -19,7 +22,7 @@ class UserFormProvider extends ChangeNotifier {
     String? uid,
     String? img,
   }) {
-    user = new Usuario(
+    user = Usuario(
       rol: rol ?? this.user!.rol,
       estado: estado ?? this.user!.estado,
       google: google ?? this.user!.google,

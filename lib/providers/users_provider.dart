@@ -1,9 +1,9 @@
-import 'package:admin_dashboard/models/http/users_response.dart';
+// ignore_for_file: unnecessary_this
+
 import 'package:flutter/material.dart';
-
-import 'package:admin_dashboard/api/CafeApi.dart';
-
-import 'package:admin_dashboard/models/usuario.dart';
+import '../api/CafeApi.dart';
+import '../models/http/users_response.dart';
+import '../models/http/usuario.dart';
 
 
 class UsersProvider extends ChangeNotifier {
