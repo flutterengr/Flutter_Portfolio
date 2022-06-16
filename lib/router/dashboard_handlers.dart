@@ -9,6 +9,8 @@ import '../ui/views/blank_view.dart';
 import '../ui/views/categories_view.dart';
 import '../ui/views/dashboard_view.dart';
 import '../ui/views/login_view.dart';
+import '../ui/views/user_view.dart';
+import '../ui/views/users_view.dart';
 
 
 class DashboardHandlers {
@@ -39,7 +41,7 @@ class DashboardHandlers {
       if ( authProvider.authStatus == AuthStatus.authenticated ) {
         return IconsView();
       } else {
-        return LoginView();
+        return const LoginView();
       }
     }
   );
@@ -53,7 +55,7 @@ class DashboardHandlers {
         .setCurrentPageUrl( Flurorouter.blankRoute );
 
       if ( authProvider.authStatus == AuthStatus.authenticated ) {
-        return BlankView();
+        return const BlankView();
       } else {
         return const LoginView();
       }
@@ -76,5 +78,44 @@ class DashboardHandlers {
     }
   );
 
+  // users
+  static Handler users = Handler(
+    handlerFunc: ( context, params ) {
+
+      final authProvider = Provider.of<AuthProvider>(context!);
+      Provider.of<SideMenuProvider>(context, listen: false)
+        .setCurrentPageUrl( Flurorouter.usersRoute );
+
+      if ( authProvider.authStatus == AuthStatus.authenticated ) {
+        return UsersView();
+      } else {
+        return const LoginView();
+      }
+    }
+  );
+
+  // user
+  static Handler user = Handler(
+    handlerFunc: ( context, params ) {
+
+      final authProvider = Provider.of<AuthProvider>(context!);
+      Provider.of<SideMenuProvider>(context, listen: false)
+        .setCurrentPageUrl( Flurorouter.userRoute );
+
+      if ( authProvider.authStatus == AuthStatus.authenticated ){
+        print( params );
+        if ( params['uid']?.first != null ) {
+            return UserView(uid: params['uid']!.first );
+        } else {
+          return UsersView();
+        }
+
+
+      } else {
+        return const LoginView();
+      }
+    }
+  );
 
 }
+
