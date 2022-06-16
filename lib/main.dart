@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:twitter_project/providers/auth_provider.dart';
+import 'package:twitter_project/providers/categories_provider.dart';
 import 'package:twitter_project/providers/sidemenu_provider.dart';
 import 'package:twitter_project/router/router.dart';
 import 'package:twitter_project/services/local_storage.dart';
@@ -19,7 +20,7 @@ void main() async {
   CafeApi.configureDio();
   
   Flurorouter.configureRoutes();
-  runApp(const AppState());
+  runApp(AppState());
 }
  
 class AppState extends StatelessWidget {
@@ -29,15 +30,11 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          lazy: false,
-          create: ( _ ) => AuthProvider()
-        ),
+        ChangeNotifierProvider(lazy: false, create: ( _ ) => AuthProvider() ),
 
-        ChangeNotifierProvider(
-          lazy: false,
-          create: ( _ ) => SideMenuProvider()
-        )
+        ChangeNotifierProvider(lazy: false, create: ( _ ) => SideMenuProvider() ),
+
+        ChangeNotifierProvider(create: ( _ ) => CategoriesProvider() ),
 
       ],
       child: MyApp(),
@@ -47,8 +44,6 @@ class AppState extends StatelessWidget {
 
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

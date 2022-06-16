@@ -14,6 +14,8 @@ import '../../services/navigation_service.dart';
 
 
 class Sidebar extends StatelessWidget {
+  const Sidebar({Key? key}) : super(key: key);
+
  
 
   void navigateTo( String routeName ) {
@@ -49,7 +51,14 @@ class Sidebar extends StatelessWidget {
 
           ItemMenu( text: 'Orders', icon: Icons.shopping_cart_outlined, onPressed: (){}),
           ItemMenu( text: 'Analytic', icon: Icons.show_chart_outlined, onPressed: (){}),
-          ItemMenu( text: 'Categories', icon: Icons.layers_outlined, onPressed: (){}),
+          
+          ItemMenu(
+            text: 'Categories', 
+            icon: Icons.layers_outlined, 
+            onPressed: () => navigateTo( Flurorouter.categoriesRoute ),
+            isActive: sideMenuProvider.currentPage == Flurorouter.categoriesRoute,
+          ),
+
           ItemMenu( text: 'Products', icon: Icons.dashboard_outlined, onPressed: (){}),
           ItemMenu( text: 'Discount', icon: Icons.attach_money_outlined, onPressed: (){}),
           ItemMenu( text: 'Customers', icon: Icons.people_alt_outlined, onPressed: (){}),
