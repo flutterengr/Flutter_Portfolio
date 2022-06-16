@@ -16,13 +16,14 @@ class UsersDataSource extends DataTableSource {
     
     final Usuario user = users[index];
 
-    const image = Image( image: AssetImage('no-image.jpg'), width: 35, height: 35 );
-
+    final image = ( user.img == null )  
+      ? Image(image: AssetImage('no-image.jpg'), width: 35, height: 35, )
+      : FadeInImage.assetNetwork(placeholder: 'loader.gif', image: user.img!, width: 35, height: 35, );
 
     return DataRow.byIndex(
       index: index,
       cells: [
-        const DataCell( 
+        DataCell( 
           ClipOval( child: image )
         ),
         DataCell( Text( user.nombre ) ),
@@ -30,7 +31,7 @@ class UsersDataSource extends DataTableSource {
         DataCell( Text( user.uid ) ),
         DataCell(
           IconButton(
-            icon: const Icon( Icons.edit_outlined ), 
+            icon: Icon( Icons.edit_outlined ), 
             onPressed: () {
               NavigationService.replaceTo('/dashboard/users/${ user.uid }');
             }

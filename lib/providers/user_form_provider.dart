@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_this, avoid_print
 
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 import '../api/CafeApi.dart';
@@ -8,7 +10,7 @@ import '../models/http/usuario.dart';
 class UserFormProvider extends ChangeNotifier {
 
   Usuario? user;
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  late GlobalKey<FormState> formKey;
 
   // void updateListener() {
   //   notifyListeners();
@@ -22,7 +24,7 @@ class UserFormProvider extends ChangeNotifier {
     String? uid,
     String? img,
   }) {
-    user = Usuario(
+    user = new Usuario(
       rol: rol ?? this.user!.rol,
       estado: estado ?? this.user!.estado,
       google: google ?? this.user!.google,
@@ -60,6 +62,24 @@ class UserFormProvider extends ChangeNotifier {
       return false;
     }
 
+
+  }
+
+
+  Future<Usuario> uploadImage( String path, Uint8List bytes ) async {
+
+    try {
+      
+      final resp = await CafeApi.uploadFile(path, bytes);
+      user = Usuario.fromMap(resp);
+      notifyListeners();
+
+      return user!;
+
+    } catch (e) {
+      print(e);
+      throw 'Error en user from provider provider';
+    }
 
   }
 

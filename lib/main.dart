@@ -1,15 +1,20 @@
 
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
+
 import 'package:twitter_project/providers/auth_provider.dart';
 import 'package:twitter_project/providers/categories_provider.dart';
 import 'package:twitter_project/providers/sidemenu_provider.dart';
 import 'package:twitter_project/providers/user_form_provider.dart';
 import 'package:twitter_project/providers/users_provider.dart';
+
 import 'package:twitter_project/router/router.dart';
+
 import 'package:twitter_project/services/local_storage.dart';
 import 'package:twitter_project/services/navigation_service.dart';
 import 'package:twitter_project/services/notifications_service.dart';
+
 import 'package:twitter_project/ui/layouts/auth/auth_layout.dart';
 import 'package:twitter_project/ui/layouts/auth/dashboard/dashboard_layout.dart';
 import 'package:twitter_project/ui/layouts/auth/splash/splash_layout.dart';
@@ -61,9 +66,8 @@ class MyApp extends StatelessWidget {
         
         final authProvider = Provider.of<AuthProvider>(context);
 
-        if ( authProvider.authStatus == AuthStatus.checking ) {
-          return const SplashLayout();
-        }
+        if ( authProvider.authStatus == AuthStatus.checking )
+          return SplashLayout();
 
         if( authProvider.authStatus == AuthStatus.authenticated ) {
           return DashboardLayout( child: child! );

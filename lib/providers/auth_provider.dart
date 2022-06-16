@@ -5,6 +5,7 @@ import 'package:twitter_project/services/navigation_service.dart';
 
 import '../api/CafeApi.dart';
 import '../models/http/auth_response.dart';
+import '../models/http/usuario.dart';
 import '../services/notifications_service.dart';
 
 enum AuthStatus {

@@ -1,14 +1,17 @@
-import 'package:admin_dashboard/models/usuario.dart';
-import 'package:admin_dashboard/providers/user_form_provider.dart';
-import 'package:admin_dashboard/providers/users_provider.dart';
-import 'package:admin_dashboard/services/notifications_service.dart';
-import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-
-import 'package:admin_dashboard/ui/labels/custom_labels.dart';
-import 'package:admin_dashboard/ui/cards/white_card.dart';
 import 'package:provider/provider.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:file_picker/file_picker.dart';
+
+
+import '../../models/http/usuario.dart';
+import '../../providers/user_form_provider.dart';
+import '../../providers/users_provider.dart';
+import '../../services/navigation_service.dart';
+import '../../services/notifications_service.dart';
+import '../cards/white_card.dart';
+import '../inputs/custom_inputs.dart';
+import '../labels/custom_labels.dart';
 
 class UserView extends StatefulWidget {
 
@@ -37,13 +40,26 @@ class _UserViewState extends State<UserView> {
     usersProvider.getUserById(widget.uid)
       .then((userDB) {
         
-        userFormProvider.user = userDB;
-        setState((){ this.user = userDB; });
+        if ( userDB != null ) {
+          userFormProvider.user = userDB;
+          userFormProvider.formKey = GlobalKey<FormState>();
+          
+          setState((){ this.user = userDB; });
+        } else {
+          NavigationService.replaceTo('/dashboard/users');
+        }
 
       }
     );
     
   }
+
+  @override
+  void dispose() { 
+    Provider.of<UserFormProvider>(context, listen: false).user = null;
+    super.dispose();
+  }
+  
 
 
   @override
@@ -201,6 +217,11 @@ class _AvatarContainer extends StatelessWidget {
     final userFormProvider = Provider.of<UserFormProvider>(context);
     final user = userFormProvider.user!;
 
+    final image = ( user.img == null )  
+      ? Image(image: AssetImage('no-image.jpg') )
+      : FadeInImage.assetNetwork(placeholder: 'loader.gif', image: user.img! );
+
+
     return WhiteCard(
       width: 250,
       child: Container(
@@ -219,9 +240,7 @@ class _AvatarContainer extends StatelessWidget {
                 children: [
                   
                   ClipOval(
-                    child: Image(
-                      image: AssetImage('no-image.jpg'),
-                    ),
+                    child: image
                   ),
 
                   Positioned(
@@ -238,8 +257,30 @@ class _AvatarContainer extends StatelessWidget {
                         backgroundColor: Colors.indigo,
                         elevation: 0,
                         child: Icon( Icons.camera_alt_outlined, size: 20,),
-                        onPressed: () {
-                          // TODO: Seleccionar la imagen
+                        onPressed: () async {
+                          
+                          FilePickerResult? result = await FilePicker.platform.pickFiles(
+                            allowedExtensions: ['jpg','jpeg','png'],
+                            allowMultiple: false
+                          );
+
+                          if(result != null) {
+                            // PlatformFile file = result.files.first;
+                            NotificationsService.showBusyIndicator(context);
+                            
+                            final newUser = await userFormProvider.uploadImage('/uploads/usuarios/${ user.uid }', result.files.first.bytes! );
+
+                            Provider.of<UsersProvider>(context, listen: false)
+                              .refreshUser(newUser);
+                            
+
+                            Navigator.of(context).pop();
+                            
+                          } else {
+                            // User canceled the picker
+                            print('no hay imagen');
+                          }
+
                         },
                       ),
                     ),
