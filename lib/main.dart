@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:twitter_project/providers/auth_provider.dart';
 import 'package:twitter_project/providers/categories_provider.dart';
 import 'package:twitter_project/providers/sidemenu_provider.dart';
+import 'package:twitter_project/providers/user_form_provider.dart';
+import 'package:twitter_project/providers/users_provider.dart';
 import 'package:twitter_project/router/router.dart';
 import 'package:twitter_project/services/local_storage.dart';
 import 'package:twitter_project/services/navigation_service.dart';
@@ -20,7 +22,7 @@ void main() async {
   CafeApi.configureDio();
   
   Flurorouter.configureRoutes();
-  runApp(AppState());
+  runApp(const AppState());
 }
  
 class AppState extends StatelessWidget {
@@ -31,19 +33,21 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(lazy: false, create: ( _ ) => AuthProvider() ),
-
         ChangeNotifierProvider(lazy: false, create: ( _ ) => SideMenuProvider() ),
-
         ChangeNotifierProvider(create: ( _ ) => CategoriesProvider() ),
+        ChangeNotifierProvider(create: ( _ ) => UsersProvider() ),
+        ChangeNotifierProvider(create: ( _ ) => UserFormProvider() ),
 
       ],
-      child: MyApp(),
+      child: const MyApp(),
     );
   }
 }
 
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
