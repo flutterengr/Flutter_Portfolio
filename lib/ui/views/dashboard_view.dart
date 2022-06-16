@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../providers/auth_provider.dart';
@@ -27,6 +28,17 @@ class DashboardView extends StatelessWidget {
         )
 
       ],
+
+
+class DashboardView extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: const Center(
+        child: Text('Dashboard View', style: TextStyle( color: Colors.red),),
+      ),
+
     );
   }
 }

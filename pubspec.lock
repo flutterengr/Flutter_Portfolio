@@ -57,6 +57,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
+
   dio:
     dependency: "direct main"
     description:
@@ -64,6 +65,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.6"
+
+
   email_validator:
     dependency: "direct main"
     description:

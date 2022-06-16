@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
+
 import '../../../../providers/sidemenu_provider.dart';
 import '../../../shared/navbar.dart';
 import '../../../shared/sidebar.dart';
 
 class DashboardLayout extends StatefulWidget {
+
+class DashboardLayout extends StatelessWidget {
+
 
   final Widget child;
 
@@ -12,6 +16,7 @@ class DashboardLayout extends StatefulWidget {
     Key? key, 
     required this.child
   }) : super(key: key);
+
 
   @override
   _DashboardLayoutState createState() => _DashboardLayoutState();
@@ -32,8 +37,11 @@ class _DashboardLayoutState extends State<DashboardLayout> with SingleTickerProv
   }
 
 
+
+
   @override
   Widget build(BuildContext context) {
+
 
     final size = MediaQuery.of(context).size;
 
@@ -96,6 +104,18 @@ class _DashboardLayoutState extends State<DashboardLayout> with SingleTickerProv
               )) 
         ],
       )
+
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Dashboard', style: TextStyle( fontSize: 50 )),
+            Expanded(child: child)
+          ],
+        ),
+      ),
+
     );
   }
 }

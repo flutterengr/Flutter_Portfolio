@@ -1,7 +1,9 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../providers/auth_provider.dart';
+
 import '../../providers/register_form_provider.dart';
 import '../../router/router.dart';
 import '../buttons/custom_outlined_button.dart';
@@ -76,7 +78,11 @@ class RegisterView extends StatelessWidget {
                         return null; // Válido
                       },
                       obscureText: true,
+
                       style: const TextStyle( color: Colors.white ),
+
+                      style: TextStyle( color: Colors.white ),
+
                       decoration: CustomInputs.loginInputDecoration(
                         hint: '*********',
                         label: 'Contraseña',
@@ -88,6 +94,7 @@ class RegisterView extends StatelessWidget {
                     CustomOutlinedButton(
                       onPressed: () {
 
+
                         final validForm = registerFormProvider.validateForm();
                         if ( !validForm ) return;
 
@@ -97,6 +104,9 @@ class RegisterView extends StatelessWidget {
                           registerFormProvider.password, 
                           registerFormProvider.name
                         );
+
+                        registerFormProvider.validateForm();
+
 
                       }, 
                       text: 'Crear cuenta',

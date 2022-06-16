@@ -10,9 +10,10 @@ import '../buttons/custom_outlined_button.dart';
 import '../buttons/link_text copy.dart';
 import '../inputs/custom_inputs.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({Key? key}) : super(key: key);
 
+
+
+class LoginView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,10 @@ class LoginView extends StatelessWidget {
                   
                   // Email
                   TextFormField(
+
                     onFieldSubmitted: ( _ ) => onFormSubmit( loginFormProvider, authProvider ),
+
+
                     validator: ( value ) {
                       if( !EmailValidator.validate(value ?? '') ) return 'Email no válido';
 
@@ -53,6 +57,7 @@ class LoginView extends StatelessWidget {
                       label: 'Email',
                       icon: Icons.email_outlined
                     ),
+
                   ),
 
                   const SizedBox( height: 20 ),
@@ -79,6 +84,38 @@ class LoginView extends StatelessWidget {
                   const SizedBox( height: 20 ),
                   CustomOutlinedButton(
                     onPressed: () => onFormSubmit( loginFormProvider, authProvider ), 
+
+                  ),
+
+                  const SizedBox( height: 20 ),
+
+                  // Password
+                  TextFormField(
+                    onChanged: ( value ) => loginFormProvider.password = value,
+                    validator: ( value ) {
+                      if ( value == null || value.isEmpty ) return 'Ingrese su contraseña';
+                      if ( value.length < 6 ) return 'La contraseña debe de ser de 6 caracteres';
+
+                      return null; // Válido
+                    },
+                    obscureText: true,
+                    style: const TextStyle( color: Colors.white ),
+                    decoration: CustomInputs.loginInputDecoration(
+                      hint: '*********',
+                      label: 'Contraseña',
+                      icon: Icons.lock_outline_rounded
+                    ),
+                  ),
+                  
+                  const SizedBox( height: 20 ),
+                  CustomOutlinedButton(
+                    onPressed: () {
+                      final isValid = loginFormProvider.validateForm();
+                      if ( isValid ) {
+                        authProvider.login(loginFormProvider.email, loginFormProvider.password);
+                      }
+                    }, 
+
                     text: 'Ingresar',
                   ),
 
