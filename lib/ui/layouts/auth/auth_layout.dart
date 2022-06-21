@@ -52,12 +52,13 @@ class _MobileBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 1000,
       color: Colors.black,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox( height: 20 ),
-          CustomTitle(),
+          const CustomTitle(),
           SizedBox(
             width: double.infinity,
             height: 420,
@@ -95,12 +96,13 @@ class _DesktopBody extends StatelessWidget {
     return Container(
       width: size.width,
       height: size.height * 0.95,
-      color: Colors.red,
+      color: Colors.black,
       child: Row(
         children: [
 
           // Twitter Background
-          const BackgroundTwitter(),
+          const Expanded(child: BackgroundTwitter()),
+          
 
           // View Container
           Container(
@@ -110,7 +112,7 @@ class _DesktopBody extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox( height: 20 ),
-                CustomTitle(),
+                const CustomTitle(),
                 const SizedBox( height: 50 ),
                 Expanded(child: child ),
               ],
