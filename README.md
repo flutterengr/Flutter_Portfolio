@@ -1,16 +1,61 @@
 # Twitter Project
 
-A new Flutter project.
+Proyecto basado en el sitio web de Twitter que tiene el objetivo de poner en practica los siguientes conceptos:
 
-## Getting Started
+### Diseño Responsive
 
-This project is a starting point for a Flutter application.
+### Router
 
-A few resources to get you started if this is your first Flutter project:
+### Lectura de segmentos
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Parámetros opcionales (query parameters)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Configuración de rutas
+
+### Protección de rutas
+
+### Manejo de formularios
+
+### Carga de archivos
+
+### Creación de un panel administrativo
+
+### Páginas 404
+
+### Tablas
+
+### Paginadas
+
+### Orden por columnas
+
+### Edición en línea
+
+### Modals
+
+### Alertas
+
+### Navegación
+
+### Layouts
+
+### Views
+
+### Hover effects
+
+### Animaciones
+
+### Controladores
+
+### Keys
+
+### Despliegues a producción
+
+### Peticiones HTTP
+
+### Manejo de tokens
+
+### Uso de interceptores
+
+### LocalStorage
+
+### Entre otros
