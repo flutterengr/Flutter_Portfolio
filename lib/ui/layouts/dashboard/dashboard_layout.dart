@@ -1,8 +1,10 @@
-import 'package:flutter/material.dart';
 
-import '../../../../providers/sidemenu_provider.dart';
-import '../../../shared/navbar.dart';
-import '../../../shared/sidebar.dart';
+import 'package:flutter/material.dart';
+import 'package:twitter_project/providers/sidemenu_provider.dart';
+import 'package:twitter_project/ui/shared/navbar.dart';
+import 'package:twitter_project/ui/shared/sidebar.dart';
+
+
 
 class DashboardLayout extends StatefulWidget {
 
@@ -45,7 +47,7 @@ class _DashboardLayoutState extends State<DashboardLayout> with SingleTickerProv
             children: [
               
               if ( size.width >= 700 )
-                Sidebar(),
+                const Sidebar(),
 
               Expanded(
                 child: Column(
@@ -56,7 +58,6 @@ class _DashboardLayoutState extends State<DashboardLayout> with SingleTickerProv
                     // View 
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.symmetric( horizontal: 20, vertical: 10 ),
                         child: widget.child,
                       )
                     ),
@@ -90,7 +91,7 @@ class _DashboardLayoutState extends State<DashboardLayout> with SingleTickerProv
 
                   Transform.translate(
                     offset: Offset( SideMenuProvider.movement.value, 0 ),
-                    child: Sidebar(),
+                    child: const Sidebar(),
                   )
                 ],
               )) 

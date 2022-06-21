@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:twitter_project/api/CafeApi.dart';
 import 'package:twitter_project/providers/auth_provider.dart';
 import 'package:twitter_project/providers/categories_provider.dart';
 import 'package:twitter_project/providers/sidemenu_provider.dart';
@@ -11,10 +11,11 @@ import 'package:twitter_project/services/local_storage.dart';
 import 'package:twitter_project/services/navigation_service.dart';
 import 'package:twitter_project/services/notifications_service.dart';
 import 'package:twitter_project/ui/layouts/auth/auth_layout.dart';
-import 'package:twitter_project/ui/layouts/auth/dashboard/dashboard_layout.dart';
-import 'package:twitter_project/ui/layouts/auth/splash/splash_layout.dart';
+import 'package:twitter_project/ui/layouts/dashboard/dashboard_layout.dart';
+import 'package:twitter_project/ui/layouts/splash/splash_layout.dart';
 
-import 'api/CafeApi.dart';
+
+
  
 void main() async {
 
@@ -39,15 +40,13 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: ( _ ) => UserFormProvider() ),
 
       ],
-      child: const MyApp(),
+      child: MyApp(),
     );
   }
 }
 
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -62,7 +61,7 @@ class MyApp extends StatelessWidget {
         final authProvider = Provider.of<AuthProvider>(context);
 
         if ( authProvider.authStatus == AuthStatus.checking ) {
-          return const SplashLayout();
+           return const SplashLayout();
         }
 
         if( authProvider.authStatus == AuthStatus.authenticated ) {

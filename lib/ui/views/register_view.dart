@@ -1,12 +1,12 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../providers/auth_provider.dart';
-import '../../providers/register_form_provider.dart';
-import '../../router/router.dart';
-import '../buttons/custom_outlined_button.dart';
-import '../buttons/link_text copy.dart';
-import '../inputs/custom_inputs.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:twitter_project/providers/auth_provider.dart';
+import 'package:twitter_project/providers/register_form_provider.dart';
+import 'package:twitter_project/router/router.dart';
+import 'package:twitter_project/ui/buttons/custom_outlined_button.dart';
+import 'package:twitter_project/ui/buttons/link_text%20copy.dart';
+import 'package:twitter_project/ui/inputs/custom_inputs.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({Key? key}) : super(key: key);
