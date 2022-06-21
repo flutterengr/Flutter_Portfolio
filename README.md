@@ -1,4 +1,4 @@
-# twitter_project
+# Twitter Project
 
 A new Flutter project.
 
