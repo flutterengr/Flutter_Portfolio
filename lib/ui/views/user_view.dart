@@ -1,14 +1,19 @@
-import 'package:admin_dashboard/models/usuario.dart';
-import 'package:admin_dashboard/providers/user_form_provider.dart';
-import 'package:admin_dashboard/providers/users_provider.dart';
-import 'package:admin_dashboard/services/notifications_service.dart';
-import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
+
+// ignore_for_file: use_build_context_synchronously, prefer_const_literals_to_create_immutables
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
-import 'package:admin_dashboard/ui/labels/custom_labels.dart';
-import 'package:admin_dashboard/ui/cards/white_card.dart';
+
 import 'package:provider/provider.dart';
+
+import '../../models/http/usuario.dart';
+import '../../providers/user_form_provider.dart';
+import '../../providers/users_provider.dart';
+import '../../services/notifications_service.dart';
+import '../cards/white_card.dart';
+import '../inputs/custom_inputs.dart';
+import '../labels/custom_labels.dart';
 
 class UserView extends StatefulWidget {
 
@@ -38,7 +43,7 @@ class _UserViewState extends State<UserView> {
       .then((userDB) {
         
         userFormProvider.user = userDB;
-        setState((){ this.user = userDB; });
+        setState((){ user = userDB; });
 
       }
     );
@@ -50,20 +55,20 @@ class _UserViewState extends State<UserView> {
   Widget build(BuildContext context) {
 
     return Container(
-      padding: EdgeInsets.symmetric( horizontal: 20, vertical: 10 ),
+      padding: const EdgeInsets.symmetric( horizontal: 20, vertical: 10 ),
       child: ListView(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         children: [
           Text('User View', style: CustomLabels.h1 ),
 
-          SizedBox( height: 10 ),
+          const SizedBox( height: 10 ),
 
           if( user == null ) 
             WhiteCard(
               child: Container(
                 alignment: Alignment.center,
                 height: 300,
-                child: CircularProgressIndicator(),
+                child: const CircularProgressIndicator(),
               )
             ),
           
@@ -82,7 +87,7 @@ class _UserViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Table(
-        columnWidths: {
+        columnWidths: const {
           0: FixedColumnWidth(250)
         },
 
@@ -93,7 +98,7 @@ class _UserViewBody extends StatelessWidget {
               _AvatarContainer(),
 
               // Formulario de actualización
-              _UserViewForm(),
+              const _UserViewForm(),
             ]
           )
         ],
@@ -136,7 +141,7 @@ class _UserViewForm extends StatelessWidget {
               },
             ),
 
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
 
             TextFormField(
               initialValue: user.correo,
@@ -153,10 +158,10 @@ class _UserViewForm extends StatelessWidget {
               },
             ),
 
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
 
             ConstrainedBox(
-              constraints: BoxConstraints( maxWidth: 100 ),
+              constraints: const BoxConstraints( maxWidth: 100 ),
               child: ElevatedButton(
                 onPressed: () async {
 
@@ -176,8 +181,8 @@ class _UserViewForm extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Icon( Icons.save_outlined, size: 20 ),
-                    Text('  Guardar')
+                    const Icon( Icons.save_outlined, size: 20 ),
+                    const Text('  Guardar')
                   ],
                 )
               ),
@@ -210,7 +215,7 @@ class _AvatarContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('Profile', style: CustomLabels.h2),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
 
             Container(
               width: 150,
@@ -218,7 +223,7 @@ class _AvatarContainer extends StatelessWidget {
               child: Stack(
                 children: [
                   
-                  ClipOval(
+                  const ClipOval(
                     child: Image(
                       image: AssetImage('no-image.jpg'),
                     ),
@@ -237,7 +242,7 @@ class _AvatarContainer extends StatelessWidget {
                       child: FloatingActionButton(
                         backgroundColor: Colors.indigo,
                         elevation: 0,
-                        child: Icon( Icons.camera_alt_outlined, size: 20,),
+                        child: const Icon( Icons.camera_alt_outlined, size: 20,),
                         onPressed: () {
                           // TODO: Seleccionar la imagen
                         },
@@ -249,11 +254,11 @@ class _AvatarContainer extends StatelessWidget {
               )
             ),
 
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
 
             Text(
               user.nombre,
-              style: TextStyle( fontWeight: FontWeight.bold ),
+              style: const TextStyle( fontWeight: FontWeight.bold ),
               textAlign: TextAlign.center,
             )
           ],
