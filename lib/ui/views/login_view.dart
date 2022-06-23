@@ -1,14 +1,18 @@
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:twitter_project/providers/auth_provider.dart';
-import 'package:twitter_project/providers/login_form_provider.dart';
-import 'package:twitter_project/router/router.dart';
-import 'package:twitter_project/ui/buttons/custom_outlined_button.dart';
-import 'package:twitter_project/ui/buttons/link_text%20copy.dart';
-import 'package:twitter_project/ui/inputs/custom_inputs.dart';
+
+import '../../providers/auth_provider.dart';
+import '../../providers/login_form_provider.dart';
+import '../../router/router.dart';
+import '../buttons/custom_outlined_button.dart';
+import '../buttons/link_text copy.dart';
+import '../inputs/custom_inputs.dart';
 
 class LoginView extends StatelessWidget {
+  const LoginView({Key? key}) : super(key: key);
+
   
   @override
   Widget build(BuildContext context) {
@@ -83,7 +87,7 @@ class LoginView extends StatelessWidget {
                   LinkText(
                     text: 'Nueva cuenta',
                     onPressed: () {
-                      Navigator.pushReplacementNamed( context, Flurorouter.registerRoute );
+                      Navigator.pushNamed( context, Flurorouter.registerRoute );
                     },
                   )
 

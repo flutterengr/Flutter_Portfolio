@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:twitter_project/models/http/usuario.dart';
 import 'package:twitter_project/router/router.dart';
 import 'package:twitter_project/services/local_storage.dart';
 import 'package:twitter_project/services/navigation_service.dart';
 
 import '../api/CafeApi.dart';
 import '../models/http/auth_response.dart';
+import '../models/http/usuario.dart';
 import '../services/notifications_service.dart';
 
 enum AuthStatus {

@@ -1,6 +1,3 @@
-
-// ignore_for_file: use_build_context_synchronously, prefer_const_literals_to_create_immutables
-
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +40,7 @@ class _UserViewState extends State<UserView> {
       .then((userDB) {
         
         userFormProvider.user = userDB;
-        setState((){ user = userDB; });
+        setState((){ this.user = userDB; });
 
       }
     );
@@ -180,9 +177,9 @@ class _UserViewForm extends StatelessWidget {
                   shadowColor: MaterialStateProperty.all( Colors.transparent ),
                 ),
                 child: Row(
-                  children: [
-                    const Icon( Icons.save_outlined, size: 20 ),
-                    const Text('  Guardar')
+                  children: const [
+                    Icon( Icons.save_outlined, size: 20 ),
+                    Text('  Guardar')
                   ],
                 )
               ),

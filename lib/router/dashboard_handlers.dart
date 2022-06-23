@@ -1,19 +1,16 @@
-
 import 'package:fluro/fluro.dart';
 import 'package:provider/provider.dart';
-import 'package:twitter_project/providers/auth_provider.dart';
-import 'package:twitter_project/providers/sidemenu_provider.dart';
 import 'package:twitter_project/router/router.dart';
-import 'package:twitter_project/ui/views/blank_view.dart';
-import 'package:twitter_project/ui/views/categories_view.dart';
-import 'package:twitter_project/ui/views/dashboard_view.dart';
 import 'package:twitter_project/ui/views/icons_view.dart';
-import 'package:twitter_project/ui/views/login_view.dart';
-import 'package:twitter_project/ui/views/user_view.dart';
-import 'package:twitter_project/ui/views/users_view.dart';
 
-
-
+import '../providers/auth_provider.dart';
+import '../providers/sidemenu_provider.dart';
+import '../ui/views/blank_view.dart';
+import '../ui/views/categories_view.dart';
+import '../ui/views/dashboard_view.dart';
+import '../ui/views/login_view.dart';
+import '../ui/views/user_view.dart';
+import '../ui/views/users_view.dart';
 
 
 class DashboardHandlers {
@@ -26,9 +23,9 @@ class DashboardHandlers {
         .setCurrentPageUrl( Flurorouter.dashboardRoute );
 
       if ( authProvider.authStatus == AuthStatus.authenticated ) {
-        return DashboardView();
+        return const DashboardView();
       } else {
-        return LoginView();
+        return const LoginView();
       }
     }
   );
@@ -44,7 +41,7 @@ class DashboardHandlers {
       if ( authProvider.authStatus == AuthStatus.authenticated ) {
         return IconsView();
       } else {
-        return LoginView();
+        return const LoginView();
       }
     }
   );
@@ -60,7 +57,7 @@ class DashboardHandlers {
       if ( authProvider.authStatus == AuthStatus.authenticated ) {
         return const BlankView();
       } else {
-        return LoginView();
+        return const LoginView();
       }
     }
   );
@@ -76,7 +73,7 @@ class DashboardHandlers {
       if ( authProvider.authStatus == AuthStatus.authenticated ) {
         return const CategoriesView();
       } else {
-        return LoginView();
+        return const LoginView();
       }
     }
   );
@@ -92,7 +89,7 @@ class DashboardHandlers {
       if ( authProvider.authStatus == AuthStatus.authenticated ) {
         return UsersView();
       } else {
-        return LoginView();
+        return const LoginView();
       }
     }
   );
@@ -115,7 +112,7 @@ class DashboardHandlers {
 
 
       } else {
-        return LoginView();
+        return const LoginView();
       }
     }
   );
